@@ -1,0 +1,60 @@
+name: Elastic Machine Config Generator
+description: Generate a config file for the Elastic Machines controller
+inputs:
+  template_path:
+    description: Path to the template config file
+    required: true
+  outfile:
+    description: Path to the output file
+    required: true
+  resource_group_name:
+    description: Azure resource group
+    required: true
+  storage_account_name:
+    description: Azure storage account name
+    required: true
+  container_name:
+    description: Azure storage account container name
+    required: true
+  subscription_id:
+    description: Azure subscription ID
+    required: true
+  container_login:
+    description: GitHub Container Registry username
+    required: true
+  container_token:
+    description: GitHub Container Registry token
+    required: true
+  app_id:
+    description: GitHub App ID
+    required: true
+  app_webhook_secret:
+    description: GitHub App webhook secret
+    required: true
+  app_private_key:
+    description: GitHub App private key
+    required: true
+  spn_object_id:
+    description: Azure Service Principal Object ID
+    required: true
+  spn_client_id:
+    description: Azure Service Principal Client ID
+    required: true
+  spn_client_secret:
+    description: Azure Service Principal Client Secret
+    required: true
+  spn_tenant_id:
+    description: Azure Service Principal Tenant ID
+    required: true
+  vm_user:
+    description: Azure VM username
+    required: true
+  vm_password:
+    description: Azure VM password
+    required: true
+  vm_ssh_key:
+    description: Azure VM SSH key
+    required: true
+runs:
+  using: node16
+  main: dist/index.js

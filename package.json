@@ -1,0 +1,25 @@
+{
+  "name": "em-config",
+  "version": "1.0.0",
+  "description": "Utility for templating Elastic Machines config",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install && ./node_modules/.bin/ncc build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lindluni/em-config.git"
+  },
+  "author": "Brett Logan",
+  "bugs": {
+    "url": "https://github.com/lindluni/em-config/issues"
+  },
+  "homepage": "https://github.com/lindluni/em-config#readme",
+  "dependencies": {
+    "@actions/core": "^1.9.1",
+    "yaml": "^2.1.1"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.34.0"
+  }
+}
