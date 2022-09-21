@@ -52,13 +52,13 @@ const main = async () => {
     config.service.scale_management_identity.azure_service_principal.tenant_id = spnTenantId
     config.service.scale_management_identity.azure_service_principal.client_secret = spnClientSecret
 
-    config.scale_config.subscription_id = subscriptionId
+    config.scale_config[0].subscription_id = subscriptionId
 
-    config.scale_config.resource_group.name = resourceGroup
+    config.scale_config[0].resource_group.name = resourceGroup
 
-    config.scale_config.vm.user = vmUser
-    config.scale_config.vm.password = vmPassword
-    config.scale_config.vm.ssh_key = vmSSHKey
+    config.scale_config[0].vm.user = vmUser
+    config.scale_config[0].vm.password = vmPassword
+    config.scale_config[0].vm.ssh_key = vmSSHKey
 
     console.log(`Writing config to ${outfile}`)
     fs.writeFileSync(outfile, YAML.stringify(config))
