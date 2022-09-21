@@ -30,6 +30,8 @@ const main = async () => {
     const template = fs.readFileSync(templatePath, 'utf8')
     const config = YAML.parse(template)
 
+    console.log(JSON.stringify(config, null, 2))
+
     config.state.azure.resource_group_name = resourceGroup
     config.state.azure.storage_account_name = storageAccountName
     config.state.azure.container_name = container_name
