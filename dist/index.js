@@ -11160,7 +11160,7 @@ const main = async () => {
 
 
 main().catch(err => {
-    console.log(`Error: ${err}`)
+    core.setFailed(`Error: ${err}`)
 })
 
 })();
