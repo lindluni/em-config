@@ -27,10 +27,8 @@ const main = async () => {
 
     const outfile = core.getInput('outfile', {required: true, trimWhitespace: true})
 
-    const template = fs.readFileSync(templatePath, 'utf8')
+    const template = fs.readFileSync(templatePath, 'utf8').toString()
     const config = YAML.parse(template)
-
-    console.log(JSON.stringify(config, null, 2))
 
     config.state.azure.resource_group_name = resourceGroup
     config.state.azure.storage_account_name = storageAccountName
