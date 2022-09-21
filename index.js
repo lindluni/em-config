@@ -4,7 +4,7 @@ const core = require( '@actions/core')
 
 const main = async () => {
     const templatePath = core.getInput('template_path', {required: true, trimWhitespace: true})
-    const resourceGroup = core.getInput('resource_group', {required: true, trimWhitespace: true})
+    const resourceGroup = core.getInput('resource_group_name', {required: true, trimWhitespace: true})
     const storageAccountName = core.getInput('storage_account_name', {required: true, trimWhitespace: true})
     const container_name = core.getInput('container_name', {required: true, trimWhitespace: true})
     const subscriptionId = core.getInput('subscription_id', {required: true, trimWhitespace: true})
