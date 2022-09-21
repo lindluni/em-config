@@ -11123,10 +11123,8 @@ const main = async () => {
 
     const outfile = core.getInput('outfile', {required: true, trimWhitespace: true})
 
-    const template = fs.readFileSync(templatePath, 'utf8')
+    const template = fs.readFileSync(templatePath, 'utf8').toString()
     const config = YAML.parse(template)
-
-    console.log(JSON.stringify(config, null, 2))
 
     config.state.azure.resource_group_name = resourceGroup
     config.state.azure.storage_account_name = storageAccountName
@@ -11148,13 +11146,13 @@ const main = async () => {
     config.service.scale_management_identity.azure_service_principal.tenant_id = spnTenantId
     config.service.scale_management_identity.azure_service_principal.client_secret = spnClientSecret
 
-    config.scale_config.subscription_id = subscriptionId
+    config.scale_config[0].subscription_id = subscriptionId
 
-    config.scale_config.resource_group.name = resourceGroup
+    config.scale_config[0].resource_group.name = resourceGroup
 
-    config.scale_config.vm.user = vmUser
-    config.scale_config.vm.password = vmPassword
-    config.scale_config.vm.ssh_key = vmSSHKey
+    config.scale_config[0].vm.user = vmUser
+    config.scale_config[0].vm.password = vmPassword
+    config.scale_config[0].vm.ssh_key = vmSSHKey
 
     console.log(`Writing config to ${outfile}`)
     fs.writeFileSync(outfile, YAML.stringify(config))
@@ -11162,6 +11160,7 @@ const main = async () => {
 
 
 main().catch(err => {
+    console.log(err)
     core.setFailed(`Error: ${err}`)
 })
 
