@@ -14,26 +14,29 @@ inputs:
   storage_account_name:
     description: Azure storage account name
     required: true
-  container_name:
+  storage_container_name:
     description: Azure storage account container name
     required: true
   subscription_id:
     description: Azure subscription ID
     required: true
-  container_login:
+  ghcr_login:
     description: GitHub Container Registry username
     required: true
-  container_token:
+  ghcr_token:
     description: GitHub Container Registry token
     required: true
-  app_id:
+  github_app_id:
     description: GitHub App ID
     required: true
-  app_webhook_secret:
+  github_app_webhook_secret:
     description: GitHub App webhook secret
     required: true
-  app_private_key:
+  github_app_private_key:
     description: GitHub App private key
+    required: true
+  github_host:
+    description: GitHub server url
     required: true
   spn_object_id:
     description: Azure Service Principal Object ID
