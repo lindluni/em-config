@@ -1,5 +1,5 @@
 const fs = require('fs')
-const YAML = require( 'yaml')
+const YAML = require( 'js-yaml')
 const core = require( '@actions/core')
 
 const main = async () => {
@@ -22,14 +22,10 @@ const main = async () => {
     const spnTenantId = core.getInput('spn_tenant_id', {required: true, trimWhitespace: true})
     const spnClientSecret = core.getInput('spn_client_secret', {required: true, trimWhitespace: true})
 
-    const vmUser = core.getInput('vm_user', {required: true, trimWhitespace: true})
-    const vmPassword = core.getInput('vm_password', {required: true, trimWhitespace: true})
-    const vmSSHKey = core.getInput('vm_ssh_key', {required: true, trimWhitespace: true})
-
     const outfile = core.getInput('outfile', {required: true, trimWhitespace: true})
 
     const template = fs.readFileSync(templatePath, 'utf8').toString()
-    const config = YAML.parse(template)
+    const config = YAML.load(template)
 
     config.state.azure.resource_group_name = resourceGroup
     config.state.azure.storage_account_name = storageAccountName
@@ -52,8 +48,9 @@ const main = async () => {
     config.service.scale_management_identity.azure_service_principal.tenant_id = spnTenantId
     config.service.scale_management_identity.azure_service_principal.client_secret = spnClientSecret
 
-    console.log(`Writing config to ${outfile}`)
-    fs.writeFileSync(outfile, YAML.stringify(config))
+    core.info(`Writing config to ${outfile}`)
+
+    fs.writeFileSync(outfile, YAML.dump(config, {forceQuotes: true}))
 }
 
 
